@@ -534,9 +534,30 @@
                         </li>
                     </ul> --}}
                 </li>
+                <li class="pcoded-hasmenu">
+                    <a href="javascript:void(0)">
+                        <span class="pcoded-micon"><i class="feather icon-map"></i></span>
+                        <span class="pcoded-mtext">Visit Requests</span>
+                        <label class="badge badge-danger">15</label>
+                        {{-- <span class="pcoded-mcaret"></span> --}}
+                    </a>
+                    <ul class="pcoded-submenu">
+                        <li>
+                             <a href="">
+                                <span class="pcoded-micon"><i class="ti-home"></i></span>
+                                <span class="pcoded-mtext" data-i18n="nav.dash.main">Pending (Latest)</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                               <span class="pcoded-micon"><i class="ti-home"></i></span>
+                               <span class="pcoded-mtext" data-i18n="nav.dash.main">Sent For Approval</span>
+                           </a>
+                       </li>
+
                     </ul>
+                     
                 </li>
-                
             </ul>
         </div>
     </nav>

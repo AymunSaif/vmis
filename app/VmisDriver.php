@@ -13,6 +13,11 @@ class VmisDriver extends Model
     }
     public function Users()
     {   
-        return $this->hasMany('App\Users');
+        return $this->belongsTo('App\Users');
     }
+    public function VmisRequestToTransportOfficer()
+    {   
+        return $this->hasMany('App\VmisRequestToTransportOfficer');
+    }
+    
 }

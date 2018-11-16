@@ -27,4 +27,10 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    public function VmisDriver(){
+        return $this->hasOne('App\VmisDriver');
+    }
+    public function VmisRequestToTransportOfficer(){
+        return $this->hasMany('App\VmisRequestToTransportOfficer');
+    }
 }
