@@ -12,16 +12,15 @@ class CreateVmisVehicleDocumentsTable extends Migration
      * @return void
      */
     public function up()
-    {
-        Schema::create('vmis_vehicles_documents', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('vmis_vehicle_id')->unsigned()->index()->nullable();
-            $table->foreign('vmis_vehicle_id')->references('id')->on('vmis_vehicles')->onDelete('cascade');
-            $table->string('documents');
-            $table->string('v_pic')->nullable();
+    { Schema::create('vmis_vehicles_documents', function (Blueprint $table) {
+        $table->increments('id');
+        $table->integer('vmis_vehicle_id')->unsigned()->index()->nullable();
+        $table->foreign('vmis_vehicle_id')->references('id')->on('vmis_vehicles')->onDelete('cascade');
+        $table->string('documents')->nullable();
+        $table->string('v_pic')->nullable();
 
-            $table->timestamps();
-        });
+        $table->timestamps();
+    });
     }
 
     /**

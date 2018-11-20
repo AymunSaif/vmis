@@ -33,4 +33,11 @@ class User extends Authenticatable
     public function VmisRequestToTransportOfficer(){
         return $this->hasMany('App\VmisRequestToTransportOfficer');
     }
+    public function PlantripMember(){
+        return $this->hasMany('App\PlantripMember');
+    }
+    public function UserDetail()
+    {
+      return $this->hasOne('App\UserDetail');
+    }
 }

@@ -6,7 +6,11 @@
  <link rel="stylesheet" href="{{ asset('_monitoring/css/css/select2.min.css')}}" />
  <!-- Multi Select css -->
 <link rel="stylesheet" href="{{ asset('_monitoring/css/css/bootstrap-multiselect.css')}}" />
-<link rel="stylesheet" href="{{ asset('_monitoring/css/multiselect/css/multi-select.css')}}" />
+<link rel="stylesheet" href="{{ asset('_monitoring/css/css/multiselect/css/multi-select.css')}}" />
+<!-- Notification.css -->
+<link rel="stylesheet" type="text/css" href="{{asset('_monitoring/css/pages/notification/notification.css')}}">
+<!-- Animate.css -->
+<link rel="stylesheet" type="text/css" href="{{asset('_monitoring/css/css/animate.css')}}">
 <style>
 
 </style>
@@ -29,6 +33,7 @@
                         <div class="col-md-3 offset-md-1">
                             <label for=""><b>Vehicle Type </b></label>
                             <select  name="vehicletype" class="form-control col-sm-12"  >
+                                    <option selected disabled>Select Vehicle</option>
                                 @foreach ($v_types as $v_type)
                                     <option value="{{$v_type->id}}">{{$v_type->name}}</option>
                                 @endforeach
@@ -88,7 +93,12 @@
                 </div></div>
             </div>
        
-            <div class="card-footer"> <div class="col-md-3 offset-md-5"><button class="btn btn-md btn-primary" name="create" type="submit"> Create</button></div></div>
+            <div class="card-footer"> 
+                <div class="col-md-3 offset-md-5 ">
+                        <button class="btn btn-success" type="submit" >Create</button>
+                    {{-- <button class="btn btn-md btn-primary" name="create" type="submit"> Create</button> --}}
+                </div>
+            </div>
         </form>
         </div>
     </div>
@@ -113,6 +123,9 @@
 {{-- <script src="{{asset('_monitoring/css/pages/advance-elements/bootstrap-datetimepicker.min.js')}}"></script> --}}
 <script src="{{asset('_monitoring/js/bootstrap-daterangepicker/js/daterangepicker.js')}}"></script>
 {{-- <script src="{{asset('_monitoring/css/pages/advance-elements/custom-picker.js')}}"></script> --}}
+<script  src="{{asset('_monitoring/css/js/bootstrap-growl.min.js')}}"></script>
+<script src="{{asset('_monitoring/css/pages/notification/notification.js')}}"></script>
+
 <script type="text/javascript">
     $('#cnic').keydown(function () {
      //allow  backspace, tab, ctrl+A, escape, carriage return
@@ -131,6 +144,7 @@
 
 </script>
 <script>
+
 $(function() {
     $('input[name="dob"]').daterangepicker({
         singleDatePicker: true,
@@ -151,4 +165,31 @@ $(function() {
     });
 });
 </script>
+{{-- <script>
+$(document).on('submit','form',function(event){
+      event.preventDefault();
+
+    //   var triptype= $('.triptype_id').val();
+    //   var outstationPur= $('.purposetypeForOutstation').val();
+    //   var localpurpose=$('.purposetype').val();
+    //   var subcity=$('.subcitytypeForOutstation').val();
+      var formdata=$(this).serialize();
+  $.ajax({
+   headers : { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+   type: 'POST',
+   url: $(this).attr('action'),
+   data: formdata,   // I WANT TO ADD EXTRA DATA + SERIALIZE DATA
+   success: function(data){
+      console.log(data);
+    //   $('.tampil_vr').text(data);
+    }
+    // error: function()
+    // {
+
+    // }
+    });
+    // disabledFields($(this));
+
+});
+</script> --}}
 @endsection

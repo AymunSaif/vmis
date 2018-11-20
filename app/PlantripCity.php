@@ -10,8 +10,8 @@ class PlantripCity extends Model
      {
         return $this->belongsTo('App\District');
     }    //
-    public function plantrip_triplocations()
+    public function PlantripTriplocation()
     {
-       return $this->belongsTo('App\PlantripTriplocation');
+       return $this->hasMany('App\PlantripTriplocation');
    }  
 }

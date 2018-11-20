@@ -20,13 +20,13 @@ $(window).on('load',function(){
             },
             offset: {
                 x: 30,
-                y: 30
+                y: 100  
             }
         });
     };
 
    
-        notify('Welcome to Notification page', 'inverse');
+        // notify('Welcome to Notification page', 'inverse');
    
 });
 
@@ -41,8 +41,8 @@ $(document).ready(function() {
     function notify(from, align, icon, type, animIn, animOut){
         $.growl({
             icon: icon,
-            title: ' Bootstrap Growl ',
-            message: 'Turning standard Bootstrap alerts into awesome notifications',
+            title: '',
+            message: 'Vehicle Has Been Added.',
             url: ''
         },{
             element: 'body',
@@ -54,11 +54,11 @@ $(document).ready(function() {
             },
             offset: {
                 x: 30,
-                y: 30
+                y: 100
             },
             spacing: 10,
             z_index: 999999,
-            delay: 2500,
+            delay: 3000,
             timer: 1000,
             url_target: '_blank',
             mouse_over: false,

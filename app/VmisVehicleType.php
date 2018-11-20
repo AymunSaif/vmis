@@ -9,6 +9,6 @@ class VmisVehicleType extends Model
     protected $table='vmis_vehicletypes';
     public function VmisVehicle()
     {   
-        return $this->hasMany('App\VmisVehicle');
+        return $this->hasOne('App\VmisVehicle','vmis_vehicletype_id');
     }
 }

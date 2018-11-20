@@ -35,7 +35,13 @@
                                         $i++;
                                         echo $i;
                                     @endphp</td>
-                                    <td>{{$vehicle->VmisVehicleType->name}}</td>
+                                    <td>
+                                        @if(isset($vehicle->VmisVehicleType->name))
+                                        {{$vehicle->VmisVehicleType->name}}
+                                        @else
+                                        <span style="color:red;"><b>Not Available</b></span>
+                                        @endif
+                                    </td>
                                     <td>{{$vehicle->name}}</td>
                                     <td>{{$vehicle->no_plate}}</td>
                                     <td>

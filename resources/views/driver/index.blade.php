@@ -36,8 +36,8 @@
                                         echo $i;
                                     @endphp</td>
                                     <td>{{$driver->User->first_name}} {{$driver->User->last_name}}</td>
-                                    <td>{{$driver->UserDetail->cnic}}</td>
-                                    <td>{{$driver->UserDetail->phone_no}}</td>
+                                    <td>{{$driver->User->UserDetail->cnic}}</td>
+                                    <td>{{$driver->User->UserDetail->phone_no}}</td>
                                     <td>
                                     <form action="{{route('driver.destroy',$driver->id)}}" method="POST">
                                     {{csrf_field()}}

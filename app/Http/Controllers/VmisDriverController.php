@@ -32,7 +32,8 @@ class VmisDriverController extends Controller
      */
     public function create()
     {
-       return view('driver.create');
+        $roles = Role::all();
+       return view('driver.create',['roles'=>$roles]);
     }
 
     /**
@@ -43,6 +44,7 @@ class VmisDriverController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         if($request->hasFile('d_pic'))
         {
              $filenameWithExt=$request->file('d_pic')->getClientOriginalName();
@@ -111,7 +113,7 @@ class VmisDriverController extends Controller
          $driver_documents->documents=$fileNameToStore2;
          $driver_documents->picture=$fileNameToStore1;
          $driver_documents->save();
-         return redirect()->route('driver.index')->with('success','New Entry!!');
+         return redirect()->back()->with('success','New Entry!!');
     }
 
     /**

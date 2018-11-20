@@ -72,8 +72,8 @@ class VmisVehicleController extends Controller
        $vehicle =new VmisVehicle();
        $vehicle->name=$request->v_name;
        $vehicle->no_plate=$request->num_plate;
-       $vehicle->v_pic=$fileNameToStore1;
        $vehicle->vmis_vehicletype_id=$request->vehicletype;
+       $vehicle->status='1';
        $vehicle->save();
 
        $vehicleDetails =new VmisVehicleDetails();
@@ -89,9 +89,10 @@ class VmisVehicleController extends Controller
 
        $vehicle_documents=new VmisVehicleDocument();
        $vehicle_documents->vmis_vehicle_id=$vehicle->id;
+       $vehicle_documents->v_pic=$fileNameToStore1;
        $vehicle_documents->documents=$fileNameToStore2;
        $vehicle_documents->save();
-       return redirect()->route('vehicle.index')->with('success','New Entry!!');
+       return redirect()->back()->with('success','Data Has Been Added');
 
     }
 

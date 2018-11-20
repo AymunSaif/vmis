@@ -12,11 +12,11 @@ class PlantripTriprequest extends Model
     public function User(){
         return $this->belongsTo('App\User');
     }
-    public function PlantripPurposes(){
-        return $this->belongsTo('App\PlantripPurposes');
+    public function PlantripPurpose(){
+        return $this->hasMany('App\PlantripPurpose');
     }
-    public function vmis_requesttotransportofficer()
+    public function VmisRequestToTransportOfficer()
     {   
-        return $this->hasMany('App\vmis_requesttotransportofficer');
+        return $this->hasOne('App\VmisRequestToTransportOfficer');
     }
 }

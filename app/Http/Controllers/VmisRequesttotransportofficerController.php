@@ -1,17 +1,68 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\vmis_requesttotransportofficer;
+use App\PlantripMember;
+use App\PlantripPurpose;
+use App\PlantripPurposetype;
+use App\PlantripTriplocation;
+use App\PlantripTriprequest;
+use App\PlantripTriptype;
+use App\PlantripVisitedproject;
+use App\VmisVehicle;
+use App\VmisDriver;
+use App\VmisRequestToTransportOfficer;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class VmisRequesttotransportofficerController extends Controller
+class VmisRequestToTransportOfficerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function pendingRequests()
+    { 
+        $triprequests = PlantripTriprequest::where('status',1)
+        ->where('approval_status','pending')
+        ->get();
+        $tripcounts=$triprequests->count();
+        // dd($triprequests);
+        return view('visitrequest.seerequest',['triprequests'=>$triprequests ,'tripcounts'=>$tripcounts]);
+    }   
+
+    public function proceedFurther($id)
+    {
+        // dd($id);
+        $triprequest = PlantripTriprequest::where('id',$id)->first();
+        $purposeCounts=$triprequest->PlantripPurpose->count();
+        $drivers= VmisDriver::all();
+        $vehicles=VmisVehicle::all();
+
+        return view('visitrequest.proceedfurther',['vehicles'=>$vehicles,'drivers'=>$drivers,'triprequest'=>$triprequest,'purposeCounts'=>$purposeCounts]);
+
+    }
+    public function sentRequests()
+    {
+        $triprequests = PlantripTriprequest::where('status',0)
+        ->where('approval_status','pending')
+        ->get();
+        $tripcounts=$triprequests->count();
+        // dd($tripcounts);
+        return view('visitrequest.sentforapproval',['triprequests'=>$triprequests,'tripcounts'=>$tripcounts]);
+    }
+
+    public function requestSentFurtherToDirectors(Request $request)
+    {
+       
+        $tripRequest= new VmisRequestToTransportOfficer();
+        $tripRequest->plantrip_triprequest_id=$request->triprequest_id;
+        $tripRequest->vmis_driver_id=$request->assigndriver;
+        $tripRequest->vmis_vehicle_id=$request->assignvehicle;
+        $tripRequest->status='1';
+        $tripRequest->approval_status='1';
+        $tripRequest->save();
+        $pendingtriprequests = PlantripTriprequest::find($request->triprequest_id);
+        $pendingtriprequests->status='0';
+        $pendingtriprequests->save();
+        return redirect()->route('pendingRequests')->with('success','Request Sent to Directors');
+    }
+    
     public function index()
     {
         //

@@ -543,13 +543,13 @@
                     </a>
                     <ul class="pcoded-submenu">
                         <li>
-                             <a href="">
+                        <a href="{{route('pendingRequests')}}">
                                 <span class="pcoded-micon"><i class="ti-home"></i></span>
                                 <span class="pcoded-mtext" data-i18n="nav.dash.main">Pending (Latest)</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                        <a href="{{route('sentRequests')}}">
                                <span class="pcoded-micon"><i class="ti-home"></i></span>
                                <span class="pcoded-mtext" data-i18n="nav.dash.main">Sent For Approval</span>
                            </a>
