@@ -19,4 +19,7 @@ class PlantripTriprequest extends Model
     {   
         return $this->hasOne('App\VmisRequestToTransportOfficer');
     }
+    public function PlantripRequestedcity(){
+        return $this->hasMany('App\PlantripRequestedcity');
+    }
 }

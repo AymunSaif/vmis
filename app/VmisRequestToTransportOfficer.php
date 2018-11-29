@@ -22,4 +22,12 @@ class VmisRequestToTransportOfficer extends Model
     {   
         return $this->belongsTo('App\User');
     }
+    public function VmisAssignedVehicle()
+    {   
+        return $this->hasMany('App\VmisAssignedVehicle');
+    }
+    public function VmisAssignedDriver()
+    {   
+        return $this->hasMany('App\VmisAssignedDriver');
+    }
 }

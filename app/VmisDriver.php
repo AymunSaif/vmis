@@ -19,5 +19,9 @@ class VmisDriver extends Model
     {   
         return $this->hasMany('App\VmisRequestToTransportOfficer');
     }
+    public function VmisAssignedDriver()
+    {   
+        return $this->hasOne('App\VmisAssignedDriver');
+    }
     
 }

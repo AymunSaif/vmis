@@ -33,7 +33,7 @@ class VmisRequestToTransportOfficerController extends Controller
         $purposeCounts=$triprequest->PlantripPurpose->count();
         $drivers= VmisDriver::all();
         $vehicles=VmisVehicle::all();
-
+        // dd($triprequest->PlantripRequestedcity[0]->PlantripCity->name);
         return view('visitrequest.proceedfurther',['vehicles'=>$vehicles,'drivers'=>$drivers,'triprequest'=>$triprequest,'purposeCounts'=>$purposeCounts]);
 
     }

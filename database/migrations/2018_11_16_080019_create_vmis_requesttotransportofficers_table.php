@@ -15,12 +15,7 @@ class CreateVmisRequesttotransportofficersTable extends Migration
     {
         Schema::create('vmis_request_to_transport_officers', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('vmis_driver_id')->unsigned()->index()->nullable();
-            $table->foreign('vmis_driver_id')->references('id')->on('vmis_drivers')->onDelete('no action');
-
-            $table->integer('vmis_vehicle_id')->unsigned()->index()->nullable();
-            $table->foreign('vmis_vehicle_id')->references('id')->on('vmis_vehicles')->onDelete('no action');
-
+            
             $table->integer('plantrip_triprequest_id')->unsigned()->index()->nullable();
             $table->foreign('plantrip_triprequest_id')->references('id')->on('plantrip_triprequests')->onDelete('no action');
 

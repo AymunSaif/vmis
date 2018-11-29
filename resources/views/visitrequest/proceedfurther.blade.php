@@ -5,11 +5,10 @@
         <div class="card">
             <div class="card-header">
                 <label for="">
-                    <h3> Request By: 
-                    </h3>
+                  <span style="background: black; color:white;">  Request By :
                     <b>{{$triprequest->User->first_name}} {{$triprequest->User->last_name}} 
                         {{-- {{$triprequest->UserDetails->father_name}}  --}}
-                        </b>
+                        </b></span>
                 </label>
             </div>
             <div class="card-block">
@@ -25,7 +24,11 @@
                             <label for=""><b>Purpose Type :</b></label>
                     </div>
                     <div class="col-md-2">
+                            @if(isset($triprequest->PlantripPurpose[0]->PlantripPurposetype->name))
                             <p>{{$triprequest->PlantripPurpose[0]->PlantripPurposetype->name}}</p>
+                            @else
+                            <p><span style="color:red;">Not Available</span></p>
+                            @endif
                         </div>
                     <div class="col-md-2">
                             <label for=""><b>Sub City Type :</b></label>
@@ -38,9 +41,39 @@
                             @endif
                         </div>
                 </div>
+                <div class="form-group row">
+                    <div class="col-md-2">
+                        <label for=""><b>Locations To Visit :</b></label>
+                    </div>
+                    <div class="col-md-2">
+                            @if(isset($triprequest->PlantripRequestedcity))
+                            @foreach ($triprequest->PlantripRequestedcity as $city)
+                                <p>{{$city->PlantripCity->name}}</p>
+                            @endforeach
+                            @endif
+                            
+                        
+                    </div>
+                    <div class="col-md-2">
+                            <label for=""><b>Visit Dates</b></label>
+                    </div>
+                    <div class="col-md-2">
+                            @if(isset($triprequest->fullDateoftrip))
+                            <p>{{$triprequest->fullDateoftrip}}</p>
+                            @else
+                            <p><span style="color:red;">Not Available</span></p>
+                            @endif
+                           
+                        </div>
+                   
+                </div>
+               
                @foreach ($triprequest->PlantripPurpose as $plantripPurpose)
+               <div class="row" >
+                    <div class="col-md-10 offset-md-1" style="margin-top:10px; margin-bottom:15px;  border:1px solid lightgrey"></div>
+               </div>
                 <div class="row form-group">
-                        <div class="col-md-2">
+                        <div class="col-md-2 offset-md-2">
                             <label for=""><b>Visit Reason : </b></label>
                         </div>
                         <div class="col-md-2">
@@ -53,7 +86,7 @@
                         </p>
                         </div>
                         @if(isset($plantripPurpose->PlantripVisitreason->name) && $plantripPurpose->PlantripVisitreason->name == "Meeting" || $plantripPurpose->PlantripVisitreason->name == "Other")
-                        <div class="col-md-3">
+                        <div class="col-md-3 ">
                             <label for=""><b>Reason Description : </b></label>
                         </div>
                         <div class="col-md-2">
@@ -61,14 +94,7 @@
                             <p>{{$plantripPurpose->PlantripVisitedproject->description}}</p>
                         </div>
                     @elseif(isset($plantripPurpose->PlantripVisitreason->name) &&  $plantripPurpose->PlantripVisitreason->name=="Monitoring" || $plantripPurpose->PlantripVisitreason->name=="Evaluation")
-                    <div class="col-md-2">
-                            <label for=""><b>Project GS # : </b></label>
-                        </div>
-                        <div class="col-md-2">
-                            @if(isset($plantripPurpose->PlantripVisitedproject->AssignedProject->Project->ADP))
-                            <p>{{$plantripPurpose->PlantripVisitedproject->AssignedProject->Project->ADP}}</p>
-                            @endif
-                        </div> 
+                   
                     <div class="col-md-1">
                             <label for=""><b>Title : </b></label>
                         </div>

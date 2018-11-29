@@ -49,202 +49,25 @@
                 </li>
                 <li class="pcoded-hasmenu">
                     <a href="javascript:void(0)">
-                        <span class="pcoded-micon"><i class="feather icon-clipboard"></i></span>
-                        <span class="pcoded-mtext">Tours & Visits</span>
-                        <span class="pcoded-mcaret"></span>
-                    </a>
-                    {{-- <ul class="pcoded-submenu">
-                        <li class="pcoded-hasmenu">
-                            <a href="javascript:void(0)" data-i18n="nav.form-components.main">
-                                <span class="pcoded-micon"><i class="ti-layers"></i></span>
-                                <span class="pcoded-mtext">Form Components</span>
-                                <span class="pcoded-mcaret"></span>
-                            </a>
-                            <ul class="pcoded-submenu">
-                                <li class=" ">
-                                    <a href="form-elements-component.html" data-i18n="nav.form-components.form-components">
-                                        <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                        <span class="pcoded-mtext">Form Components</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                                <li class=" ">
-                                    <a href="form-elements-add-on.html" data-i18n="nav.form-components.form-elements-add-on">
-                                        <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                        <span class="pcoded-mtext">Form-Elements-Add-On</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                                <li class=" ">
-                                    <a href="form-elements-advance.html" data-i18n="nav.form-components.form-elements-advance">
-                                        <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                        <span class="pcoded-mtext">Form-Elements-Advance</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                                <li class=" ">
-                                    <a href="form-validation.html" data-i18n="nav.form-components.form-validation">
-                                        <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                        <span class="pcoded-mtext">Form Validation</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </li>
-                        <li class=" ">
-                            <a href="form-picker.html" data-i18n="nav.form-pickers.main">
-                                <span class="pcoded-micon"><i class="ti-pencil-alt"></i></span>
-                                <span class="pcoded-mtext">Form Picker</span>
-                                <span class="pcoded-badge label label-warning">NEW</span>
-                                <span class="pcoded-mcaret"></span>
-                            </a>
-                        </li>
-
-                        <li class=" ">
-                            <a href="form-select.html" data-i18n="nav.form-select.main">
-                                <span class="pcoded-micon"><i class="ti-shortcode"></i></span>
-                                <span class="pcoded-mtext">Form Select</span>
-                                <span class="pcoded-mcaret"></span>
-                            </a>
-                        </li>
-                        <li class=" ">
-                            <a href="form-masking.html" data-i18n="nav.form-masking.main">
-                                <span class="pcoded-micon"><i class="ti-write"></i></span>
-                                <span class="pcoded-mtext">Form Masking</span>
-                                <span class="pcoded-mcaret"></span>
-                            </a>
-                        </li>
-                        <li class=" ">
-                            <a href="form-wizard.html" data-i18n="nav.form-wizard.main">
-                                <span class="pcoded-micon"><i class="ti-archive"></i></span>
-                                <span class="pcoded-mtext">Form Wizard</span>
-                                <span class="pcoded-mcaret"></span>
-                            </a>
-                        </li>
-                        <li class="pcoded-hasmenu">
-                            <a href="javascript:void(0)" data-i18n="nav.ready-to-use.main">
-                                <span class="pcoded-micon"><i class="ti-receipt"></i></span>
-                                <span class="pcoded-mtext">Ready To Use</span>
-                                <span class="pcoded-badge label label-danger">HOT</span>
-                                <span class="pcoded-mcaret"></span>
-                            </a>
-                            <ul class="pcoded-submenu">
-                                <li class=" ">
-                                    <a href="ready-cloned-elements-form.html" data-i18n="nav.ready-to-use.cloned-elements-form">
-                                        <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                        <span class="pcoded-mtext">Cloned Elements Form</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                                <li class=" ">
-                                    <a href="ready-currency-form.html" data-i18n="nav.ready-to-use.currency-form">
-                                        <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                        <span class="pcoded-mtext">Currency Form</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                                <li class=" ">
-                                    <a href="ready-form-booking.html" data-i18n="nav.ready-to-use.booking-form">
-                                        <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                        <span class="pcoded-mtext">Booking Form</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                                <li class=" ">
-                                    <a href="ready-form-booking-multi-steps.html" data-i18n="nav.ready-to-use.booking-multi-steps-form">
-                                        <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                        <span class="pcoded-mtext">Booking Multi Steps Form</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                                <li class=" ">
-                                    <a href="ready-form-comment.html" data-i18n="nav.ready-to-use.comment-form">
-                                        <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                        <span class="pcoded-mtext">Comment Form</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                                <li class=" ">
-                                    <a href="ready-form-contact.html" data-i18n="nav.ready-to-use.contact-form">
-                                        <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                        <span class="pcoded-mtext">Contact Form</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                                <li class=" ">
-                                    <a href="ready-job-application-form.html" data-i18n="nav.ready-to-use.job-application-form">
-                                        <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                        <span class="pcoded-mtext">Job Application Form</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                                <li class=" ">
-                                    <a href="ready-js-addition-form.html" data-i18n="nav.ready-to-use.jS-addition-form">
-                                        <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                        <span class="pcoded-mtext">JS Addition Form</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                                <li class=" ">
-                                    <a href="ready-login-form.html" data-i18n="nav.ready-to-use.login-form">
-                                        <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                        <span class="pcoded-mtext">Login Form</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                                <li class=" ">
-                                    <a href="ready-popup-modal-form.html" target="_blank" data-i18n="nav.ready-to-use.popup-modal-form">
-                                        <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                        <span class="pcoded-mtext">Popup Modal Form</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                                <li class=" ">
-                                    <a href="ready-registration-form.html" data-i18n="nav.ready-to-use.registration-form">
-                                        <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                        <span class="pcoded-mtext">Registration Form</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                                <li class=" ">
-                                    <a href="ready-review-form.html" data-i18n="nav.ready-to-use.review-form">
-                                        <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                        <span class="pcoded-mtext">Review Form</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                                <li class=" ">
-                                    <a href="ready-subscribe-form.html" data-i18n="nav.ready-to-use.subscribe-form">
-                                        <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                        <span class="pcoded-mtext">Subscribe Form</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                                <li class=" ">
-                                    <a href="ready-suggestion-form.html" data-i18n="nav.ready-to-use.suggestion-form">
-                                        <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                        <span class="pcoded-mtext">Suggestion Form</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                                <li class=" ">
-                                    <a href="ready-tabs-form.html" data-i18n="nav.ready-to-use.tabs-form">
-                                        <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                        <span class="pcoded-mtext">Tabs Form</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul> --}}
-                </li>
-                <li class="pcoded-hasmenu">
-                    <a href="javascript:void(0)">
                         <span class="pcoded-micon"><i class="feather icon-credit-card"></i></span>
                         <span class="pcoded-mtext">Vehicle Issues & Repairance Form</span>
                         <span class="pcoded-mcaret"></span>
                     </a>
+                    <ul class="pcoded-submenu">
+                        <li>
+                        <a href="">
+                                <span class="pcoded-micon"><i class="ti-home"></i></span>
+                                <span class="pcoded-mtext" data-i18n="nav.dash.main">Repair&Issue Form</span>
+                            </a>
+                        </li>
+                        <li>
+                        <a href="#">
+                               <span class="pcoded-micon"><i class="ti-home"></i></span>
+                               <span class="pcoded-mtext" data-i18n="nav.dash.main">View All Queries</span>
+                           </a>
+                       </li>
+
+                    </ul>
                     {{-- <ul class="pcoded-submenu">
                         <li class="pcoded-hasmenu">
                             <a href="javascript:void(0)" data-i18n="nav.bootstrap-table.main">

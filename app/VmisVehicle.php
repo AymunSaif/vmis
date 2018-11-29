@@ -22,4 +22,8 @@ class VmisVehicle extends Model
     {   
         return $this->hasMany('App\vmis_requesttotransportofficer');
     }
+    public function VmisAssignedVehicle()
+    {   
+        return $this->hasOne('App\VmisAssignedVehicle');
+    }
 }
