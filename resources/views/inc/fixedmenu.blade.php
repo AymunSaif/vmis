@@ -1,5 +1,5 @@
 <div class="pcoded-main-container">
-    <nav class="pcoded-navbar">
+    <nav class="pcoded-navbar nodisprint">
         <div class="pcoded-inner-navbar">
             <ul class="pcoded-item pcoded-left-item">
                 <li class="pcoded-hasmenu">

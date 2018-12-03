@@ -12,7 +12,7 @@
         </div>
         <div class="card-block">
                 <div class="col-md-10 offset-md-1 table-responsive">
-                        <table id="#" class="table table-bordered nowrap">
+                <table id="#" class="table table-bordered nowrap">
                     <thead>
                     <tr>
                         <th style="text-align:center;">Sr #.</th>
@@ -38,12 +38,28 @@
                            <td style="text-align:center;">
                             {{$triprequest->User->first_name}} {{$triprequest->User->last_name}}
                         </td>
+                        {{-- {{dd($triprequest->VmisRequestToTransportOfficer->VmisAssignedDriver[0]->VmisDriver->User->first_name)}} --}}
                          <td style="text-align:center;"> {{$triprequest->PlantripTriptype->name}}</td>
-                           <td style="text-align:center;">{{$triprequest->VmisRequestToTransportOfficer->VmisDriver->User->first_name}} {{$triprequest->VmisRequestToTransportOfficer->VmisDriver->User->last_name}}</td>
-                           <td style="text-align:center;">{{$triprequest->VmisRequestToTransportOfficer->VmisVehicle->name}}</td>
+                         <td style="text-align:center;">
+                                @if(isset($triprequest->VmisRequestToTransportOfficer->VmisAssignedDriver[0]->VmisDriver->User->first_name))
+                                {{$triprequest->VmisRequestToTransportOfficer->VmisAssignedDriver[0]->VmisDriver->User->first_name}} 
+                                {{$triprequest->VmisRequestToTransportOfficer->VmisAssignedDriver[0]->VmisDriver->User->last_name}}
+                                @else
+                                <p>Not Assigned</p>
+                                @endif
+                            </td>
+                            <td style="text-align:center;">
+                                @if(isset($triprequest->VmisRequestToTransportOfficer->VmisAssignedVehicle[0]->VmisVehicle->name))
+                                {{$triprequest->VmisRequestToTransportOfficer->VmisAssignedVehicle[0]->VmisVehicle->name}} 
+
+                                @else
+                                <p>Not Assigned</p>
+                                @endif
+                            </td>
+
                         <td style="text-align:center;" >
                             @if($triprequest->VmisRequestToTransportOfficer->approval_status=='1')
-                            <label class="badge badge-md badge-warning">Waiting For Approval</label> 
+                            <label class="badge badge-md badge-primary">Waiting For Approval</label> 
                             @elseif($triprequest->VmisRequestToTransportOfficer->approval_status=='2')
                             <label class="badge badge-md badge-success">Approved</label> 
                             @elseif($triprequest->VmisRequestToTransportOfficer->approval_status=='3')

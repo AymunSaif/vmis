@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class VmisDriver extends Model
 {
-    // protected $table="vmis_drivers";
+    protected $table="vmis_drivers";
     public function VmisDocument()
     {   
         return $this->hasMany('App\VmisDriverDocument');

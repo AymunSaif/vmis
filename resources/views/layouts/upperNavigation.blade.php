@@ -69,7 +69,7 @@
         <div id="pcoded" class="pcoded">
             <div class="pcoded-overlay-box"></div>
             <div class="pcoded-container navbar-wrapper">
-                <nav class="navbar header-navbar pcoded-header">
+                <nav class="navbar header-navbar pcoded-header nodisprint">
                     <div class="navbar-wrapper">
     
                         <div class="navbar-logo">

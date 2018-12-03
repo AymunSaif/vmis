@@ -16,8 +16,8 @@ class CreateVmisAssignedVehiclesTable extends Migration
         Schema::create('vmis_assigned_vehicles', function (Blueprint $table) {
             $table->increments('id');
             //foreign keys to assigned vehicle and driver table
-            $table->integer('request_sentfurther_id')->unsigned()->index()->nullable();
-            $table->foreign('request_sentfurther_id')->references('id')->on('vmis_request_to_transport_officers')->onDelete('no action');
+            $table->integer('vmis_request_to_transport_officer_id')->unsigned()->index()->nullable();
+            $table->foreign('vmis_request_to_transport_officer_id')->references('id')->on('vmis_request_to_transport_officers')->onDelete('no action');
 
             $table->integer('vmis_vehicle_id')->unsigned()->index()->nullable();
             $table->foreign('vmis_vehicle_id')->references('id')->on('vmis_vehicles')->onDelete('no action');
