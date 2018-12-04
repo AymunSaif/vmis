@@ -34,6 +34,8 @@ class CreateVmisVehiclesTable extends Migration
             $table->string('tunning')->nullable();
             $table->string('brakeshoe')->nullable();
             $table->string('tyres')->nullable();
+            $table->string('rentedCheck')->nullable();
+            $table->string('rent_duration')->nullable();
             $table->timestamps();
         });
     }

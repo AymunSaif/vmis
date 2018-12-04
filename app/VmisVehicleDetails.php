@@ -12,5 +12,10 @@ class VmisVehicleDetails extends Model
     {   
         return $this->belongsTo('App\VmisVehicle');
     }
+    public function VmisVehicleRepairanceDate()
+    {   
+        return $this->hasMany('App\VmisVehicleRepairanceDate');
+    }
+    
 
 }

@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="{{ asset('_monitoring/css/css/multiselect/css/multi-select.css')}}" />
 <style>
     .fancyLable{background: #16d39a !important;padding: 0.5% !important;border-radius: 4px !important;}
+    .requestedby{background:tomato !important;padding:0.2% !important;border-radius: 4px !important;}
     .black{color:#000 !important;}
     .white{color:#fff !important;}
     .form-group{margin-bottom:0px !important;}
@@ -33,10 +34,9 @@
         <div class="card">
             <div class="card-header">
                 <label for="" class="fancyLable">
-                  <span class="white">  Request By :
-                    <b>{{$triprequest->User->first_name}} {{$triprequest->User->last_name}} 
-                        {{-- {{$triprequest->UserDetails->father_name}}  --}}
-                        </b></span>
+                  <span class="white"> Requested By:
+                    {{$requesteeName[0]->first_name}} {{$requesteeName[0]->last_name}} 
+                       </span>
                 </label>
             </div>
             <div class="card-block">
@@ -66,7 +66,7 @@
                 <p class="col-md-2">
                         @if(isset($triprequest->PlantripRequestedcity))
                         @foreach ($triprequest->PlantripRequestedcity as $city)
-                            {{$city->PlantripCity->name}}
+                            {{$city->PlantripCity->name}} ,
                         @endforeach
                         @endif
                 </p>
@@ -81,8 +81,8 @@
                 </div>
                
                @foreach ($triprequest->PlantripPurpose as $plantripPurpose)               
-                <div class="col-md-8 offset-md-2 newPurposeHere">
-                {{-- <div class="col-md-10 offset-md-1" style="margin-top:10px; margin-bottom:15px;  border:1px solid lightgrey"></div> --}}
+                <div class="col-md-10 offset-md-1 newPurposeHere">
+                <div class="col-md-12" style="margin-top:10px; margin-bottom:15px;  border:1px solid lightgrey"></div>
                     <div class="row form-group">
                         <div class="col-md-2 offset-md-2">
                             <label for=""><b>Visit Reason : </b></label>
@@ -201,10 +201,13 @@
                                             @php
                                             $j=0;
                                             @endphp
-                                            @if(isset($triplocation->PlantripMember))
-                                            @foreach ($triplocation->PlantripMember as $PlantripMembers)
-                                                <p> {{$PlantripMembers->User->first_name}}   {{$PlantripMembers->User->last_name}}<br> </p>
-                                                
+                                            @if(isset($plantripPurpose->PlantripMembers))
+                                            @foreach ($plantripPurpose->PlantripMembers as $PlantripMember)
+                                                @if($PlantripMember->requested_by==1)
+                                                    <p class="requestedby white" style="text-align: center"> {{$PlantripMember->User->first_name}}   {{$PlantripMember->User->last_name}}<br> </p>
+                                                @else
+                                                    <p style="text-align: center">{{$PlantripMember->User->first_name}}   {{$PlantripMember->User->last_name}}<br> </p>
+                                                @endif                                        
                                                 @php
                                                 $j++;
                                                 @endphp
@@ -235,24 +238,20 @@
                 <div class="row">
                     <div class="col-md-6 form-group ">
                         <label for=""><b>Assign Driver :</b></label><br>
-                        <select name="assigndriver" class="multipleselect form-control" multiple="multiple" data-placeholder="Select Driver"  id="">
-                                {{-- <option value="" hidden disabled> Choose Driver</option> --}}
+                        <select required name="assigndriver" class="multipleselect form-control" multiple="multiple" data-placeholder="Select Driver"  id="">
                             @foreach ($drivers as $driver)
-                        <option value="{{$driver->id}}">{{$driver->User->first_name}} {{$driver->User->last_name}}</option>
+                            <option value="{{$driver->id}}">{{$driver->User->first_name}} {{$driver->User->last_name}}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="col-md-6 form-group ">
                         <label for=""><b>Assign Vehicle : </b></label><br>
-                        <select name="assignvehicle" class=" multipleselect form-control" data-placeholder="Select Vehicle"  multiple="multiple" id="">
-                        {{-- <option value="" hidden disabled> Choose Vehicle</option> --}}
+                        <select name="assignvehicle" required class=" multipleselect form-control" data-placeholder="Select Vehicle"  multiple="multiple" id="">
                             @foreach ($vehicles as $vehicle)
-                        <option value="{{$vehicle->id}}">{{$vehicle->name}}-{{$vehicle->no_plate}}</option>
+                            <option value="{{$vehicle->id}}">{{$vehicle->name}}-{{$vehicle->no_plate}}</option>
                             @endforeach
                         </select> 
                     </div>
-                    
-                      
                 </div>
             </div>
             <div class="card-footer">

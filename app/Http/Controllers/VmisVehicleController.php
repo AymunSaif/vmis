@@ -78,6 +78,8 @@ class VmisVehicleController extends Controller
 
        $vehicleDetails =new VmisVehicleDetails();
        $vehicleDetails->vmis_vehicle_id=$vehicle->id;
+       $vehicleDetails->rentedCheck=$request->rentcheck;
+       $vehicleDetails->rent_duration=$request->rentDuration;
        $vehicleDetails->milage=$request->milage;
        $vehicleDetails->kilometers=$request->km;
        $vehicleDetails->liters=$request->liter;
@@ -114,9 +116,10 @@ class VmisVehicleController extends Controller
      * @param  \App\VmisVehicle  $vmis_Vehicle
      * @return \Illuminate\Http\Response
      */
-    public function edit(VmisVehicle $VmisVehicle)
-    {
-        //
+    public function edit($id)
+    {   $v_types=VmisVehicleType::all();
+        $vehicle = VmisVehicle::find($id);
+        return view('vehicle.edit',compact('vehicle','v_types'));
     }
 
     /**
@@ -126,9 +129,9 @@ class VmisVehicleController extends Controller
      * @param  \App\VmisVehicle  $vmis_Vehicle
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, vmis_Vehicle $vmis_Vehicle)
+    public function update($id)
     {
-        //
+      dd($id);
     }
 
     /**

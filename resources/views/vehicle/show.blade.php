@@ -17,7 +17,7 @@
             <div class="card-header">
                 <h4>Add New Vehicle
             </h4></div>
-        <form action="{{route('vehicle.edit',$vehicle->id)}}" method="POST" enctype="multipart/form-data" id="add_vehicle">
+        <form action="{{route('vehicle.edit',$vehicle->id)}}" method="GET" enctype="multipart/form-data" id="add_vehicle">
             {{csrf_field()}}
             <div class="card-block">
                 <div class="row"> <div class="col-md-12">
@@ -86,7 +86,9 @@
                 </div></div>
             </div>
        
-            <div class="card-footer"> <div class="col-md-3 offset-md-5"><button class="btn btn-md btn-primary" name="edit" type="submit" disabled> Edit</button></div></div>
+            <div class="card-footer"> <div class="col-md-3 offset-md-5">
+                <button class="btn btn-md btn-primary" name="edit" type="submit" > Edit</button>
+            </div></div>
         </form>
         </div>
     </div>

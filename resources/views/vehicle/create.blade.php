@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="{{ asset('_monitoring/css/css/responsive.bootstrap4.min.css')}}" />
  <!-- Select 2 css -->
  <link rel="stylesheet" href="{{ asset('_monitoring/css/css/select2.min.css')}}" />
+ <link rel="stylesheet" href="{{ asset('_monitoring/css/css/component.css')}}" />
  <!-- Multi Select css -->
 <link rel="stylesheet" href="{{ asset('_monitoring/css/css/bootstrap-multiselect.css')}}" />
 <link rel="stylesheet" href="{{ asset('_monitoring/css/css/multiselect/css/multi-select.css')}}" />
@@ -21,7 +22,7 @@
             <div class="card-header">
                 <h4>Add New Vehicle
             </h4></div>
-        <form action="{{route('vehicle.store')}}" method="POST" enctype="multipart/form-data" id="add_driver">
+        <form action="{{route('vehicle.store')}}" method="POST" enctype="multipart/form-data" id="add_vehicle">
             {{csrf_field()}}
             <div class="card-block">
                 <div class="row"> <div class="col-md-12">
@@ -40,12 +41,38 @@
                             </select>
                         </div>
                     </div>
+                    
                     <div class="row form-group">
-                        <div class="col-md-3 offset-md-2">
-                            <label for=""><b>Number Plate</b></label>
-                            <input type="text" class="form-control form-control-round" name="num_plate" id="num_plate">
-                        </div>
+                        <div class="col-md-2 offset-md-2"> <label><b>Vehicle</b></label></div>
+                        <div class="col-md-3 form-radio">
+                                <div class="radio radio-outline radio-inline">
+                                    <label>
+                                        <input type="radio" class="rented" name="rentcheck" id="rented" value="yes">
+                                        <i class="helper"></i><b>Rented</b>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-2  form-radio">
+                                <div class="radio radio-outline radio-inline">
+                                    <label>
+                                        <input type="radio" class="notrented" name="rentcheck" id="notrented" value="no">
+                                        <i class="helper"></i><b>Not Rented</b>
+                                    </label>
+                                </div>
+                            </div>
                     </div>
+                    <div class="row form-group">
+                            <div class="col-md-3 offset-md-2">
+                                    <label for=""><b>Number Plate</b></label>
+                                    <input type="text" class="form-control form-control-round" name="num_plate" id="num_plate">
+                                </div>
+                            
+                            <div class="col-md-3 offset-md-1 rentDuration" style="display:none;">
+                                    <label for=""><b>Rent Duration</b></label>
+                                    <input type="text" class="form-control form-control-round " placeholder="Duration In Months" name="rentDuration" id="rentDuration">
+                                </div>
+                            
+                </div>
                     <div class="row form-group">
                             <div class="col-md-3 offset-md-2">
                                 <label for=""><b>Vehicle Picture</b></label>
@@ -125,24 +152,6 @@
 {{-- <script src="{{asset('_monitoring/css/pages/advance-elements/custom-picker.js')}}"></script> --}}
 <script  src="{{asset('_monitoring/css/js/bootstrap-growl.min.js')}}"></script>
 <script src="{{asset('_monitoring/css/pages/notification/notification.js')}}"></script>
-
-<script type="text/javascript">
-    $('#cnic').keydown(function () {
-     //allow  backspace, tab, ctrl+A, escape, carriage return
-     if (event.keyCode == 8 || event.keyCode == 9 ||
-         event.keyCode == 27 || event.keyCode == 13 ||
-         (event.keyCode == 65 && event.ctrlKey === true))
-         return;
-     // if ((event.keyCode < 48 || event.keyCode > 57))
-     //     event.preventDefault();
-
-     var length = $(this).val().length;
-
-     if (length == 5 || length == 13)
-         $(this).val($(this).val() + '-');
- });
-
-</script>
 <script>
 
 $(function() {
@@ -164,6 +173,17 @@ $(function() {
         showDropdowns: true
     });
 });
+
+  $(".rented").click(function()
+    {
+        $(".rentDuration").show(1000);
+        
+    });
+    $(".notrented").click(function()
+    {
+        $(".rentDuration").hide(1000);
+        
+    });
 </script>
 {{-- <script>
 $(document).on('submit','form',function(event){
