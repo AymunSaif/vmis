@@ -24,6 +24,7 @@
             </h4></div>
         <form action="{{route('vehicle.update',$vehicle->id)}}" method="POST" enctype="multipart/form-data" id="add_vehicle">
             {{csrf_field()}}
+            <input name="_method" type="hidden" value="PUT">
             <div class="card-block">
                 <div class="row"> <div class="col-md-12">
                     <div class="row form-group ">
@@ -34,7 +35,7 @@
                         <div class="col-md-3 offset-md-1">
                             <label for=""><b>Vehicle Type </b></label>
                             <select  name="vehicletype" class="form-control col-sm-12"  >
-                            <option selected >{{$vehicle->VmisVehicleType->name}}</option>
+                            <option value="{{$vehicle->VmisVehicleType->id}}" selected >{{$vehicle->VmisVehicleType->name}}</option>
                                 @foreach ($v_types as $v_type)
                                     <option value="{{$v_type->id}}">{{$v_type->name}}</option>
                                 @endforeach
@@ -160,27 +161,6 @@
 <script src="{{asset('_monitoring/css/pages/notification/notification.js')}}"></script>
 
 <script>
-
-$(function() {
-    $('input[name="dob"]').daterangepicker({
-        singleDatePicker: true,
-        showDropdowns: true
-    });
-});
-$(function() {
-    $('input[name="doi"]').daterangepicker({
-        singleDatePicker: true,
-        showDropdowns: true
-    });
-});
-
-$(function() {
-    $('input[name="doe"]').daterangepicker({
-        singleDatePicker: true,
-        showDropdowns: true
-    });
-});
-
  
   $(".rented").click(function()
     {

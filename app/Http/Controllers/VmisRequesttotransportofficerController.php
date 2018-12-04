@@ -56,12 +56,12 @@ class VmisRequestToTransportOfficerController extends Controller
         ->where('plantrip_members.requested_by',1)
         ->distinct()
         ->get();
-
+        // dd($requesteeName[0]->first_name);
         $purposeCounts=$triprequest->PlantripPurpose->count();
         $drivers= VmisDriver::all();
         $vehicles=VmisVehicle::all();
         // dd($triprequest->PlantripRequestedcity[0]->PlantripCity->name);
-        return view('visitrequest.proceedfurther',['vehicles'=>$vehicles,'drivers'=>$drivers,'triprequest'=>$triprequest,'purposeCounts'=>$purposeCounts ,' $requesteeName'=> $requesteeName]);
+        return view('visitrequest.proceedfurther',['vehicles'=>$vehicles,'drivers'=>$drivers,'triprequest'=>$triprequest,'purposeCounts'=>$purposeCounts ,' requesteeName'=> $requesteeName]);
 
     }
     public function sentRequests()

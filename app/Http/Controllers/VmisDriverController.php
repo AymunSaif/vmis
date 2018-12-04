@@ -149,9 +149,76 @@ class VmisDriverController extends Controller
      * @param  \App\VmisDriver  $vmis_Driver
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, VmisDriver $VmisDriver)
+    public function update(Request $request,$id)
     {
-        //
+        // dd($request);
+        if($request->hasFile('d_pic'))
+        {
+             $filenameWithExt=$request->file('d_pic')->getClientOriginalName();
+             $filename=pathinfo($filenameWithExt,PATHINFO_FILENAME);
+             $extension=$request->file('d_pic')->getClientOriginalExtension();
+             $fileNameToStore1= $filename.'_'.time().'.'.$extension;
+             $path1=$request->file('d_pic')->storeAs('/storage/driver_pictures/',$fileNameToStore1);
+        }
+        else{
+            $fileNameToStore1='noimage.jpg';
+        }
+  
+        if($request->hasFile('d_documents'))
+        {
+             $filenameWithExt=$request->file('d_documents')->getClientOriginalName();
+             $filename=pathinfo($filenameWithExt,PATHINFO_FILENAME);
+             $extension=$request->file('d_documents')->getClientOriginalExtension();
+             $fileNameToStore2= $filename.'_'.time().'.'.$extension;
+  
+             $path2=$request->file('d_documents')->storeAs('/storage/driver_license_pictures/',$fileNameToStore2);
+        }
+        else{
+            $fileNameToStore2='noimage.jpg';
+        }
+        // $newdriver = $
+        
+        $user =User::find($request->driver_id);
+        $user->first_name=$request->f_name;
+        $user->last_name=$request->l_name;
+        $user->username=$request->u_name;
+        $user->password=$request->p_word;
+        $user->email=$request->email;
+        $user->admin_password=str_random(60);
+        $user->api_token=str_random(60);
+        $user->save();
+
+        $user_detail =UserDetail::where('user_id',$request->driver_id)->first();
+        $user_detail->user_id=$user->id;
+        $user_detail->cnic=$request->d_cnic;
+        $user_detail->dob=$request->dob;
+        $user_detail->gender=$request->gender;
+        $user_detail->phone_no=$request->d_number;
+        $user_detail->save();
+
+        $user_role=RoleUser::where('user_id',$request->driver_id)->first();
+        $role= Role::where('name','driver')->first();
+        $user_role->role_id=$role->id;
+        $user_role->user_id=$user->id;
+        $user_role->save();
+        // return $user;
+
+
+
+         $driver=VmisDriver::where('user_id',$request->driver_id)->first();
+         $driver->user_id=$user->id;
+         $driver->licenseIssuanceDate=$request->doi;
+         $driver->licenseExpiryDate=$request->doe;
+         $driver->rating='0';
+         $driver->status='1';
+         $driver->save();
+
+         $driver_documents=VmisDriverDocument::where('vmis_driver_id',$id)->first();
+         $driver_documents->vmis_driver_id=$driver->id;
+         $driver_documents->documents=$fileNameToStore2;
+         $driver_documents->picture=$fileNameToStore1;
+         $driver_documents->save();
+         return view('driver.index')->with('success','Updated Entry!!');
     }
 
     /**

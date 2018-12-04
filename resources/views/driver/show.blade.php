@@ -10,7 +10,7 @@
     <div class="col-md-12">
         <div class="card z-depth-0">
             <div class="card-header">
-                <h4>Add New Driver 
+                <h4>View Data
             </h4></div>
         <form action="{{route('driver.edit',$driver->id)}}" method="GET" enctype="multipart/form-data" id="edit_driver">
             {{csrf_field()}}
@@ -21,60 +21,51 @@
                                 <label for=""><b>Driver Picture </b>
                                     <img src="{{asset('/storage/driver_pictures/'.$driver->picture)}}" height="30px" width="30px"/>
                                 </label>
-                                {{-- <input type="file"  name="d_pic" id="d_pic" multiple> --}}
                             </div>
                     </div>
                     <div class="row form-group ">
                         <div class="col-md-5 offset-md-1">
-                        <label for=""><b>Driver Name :</b> {{$driver->name}}</label>
-                            {{-- <input type="text" class="form-control form-control-round" name="d_name" id="name"> --}}
+                        <label for=""><b>Driver Name :</b> {{$driver->User->first_name}} {{$driver->User->last_name}}</label>
                         </div>
                         <div class="col-md-5 offset-md-1">
-                            <label for=""><b>Driver CNIC :</b>{{$driver->cnic}}</label>
-                            {{-- <input autocompleteoff type="text" id="cnic" maxlength="15" name="d_cnic" placeholder="xxxxx-xxxxxxx-x" class="form-control form-control-round" required> --}}
+                            <label for=""><b>Driver CNIC :</b>{{$driver->User->UserDetail->cnic}}</label>
                         </div>
                     </div>
+                    
                     <div class="row form-group">
                         <div class="col-md-5 offset-md-1">
-                            <label for=""><b>Driver BirthDate :</b> {{$driver->dob}}</label>
-                            {{-- <input type="text" class="form-control form-control-round" name="dob" id="dob"> --}}
+                            <label for=""><b>Driver BirthDate :</b> {{$driver->User->UserDetail->dob}}</label>
                         </div>
                         <div class="col-md-5 offset-md-1 ">
-                                <label for=""><b>Driver Gender :</b> {{$driver->gender}}</label>
-                            {{-- <div>
-                             <input name="gender" value="female" type="radio"> Female
-                             <input name="gender" value="male" type="radio"> Male       
-                            </div>    --}}
+                                <label for=""><b>Driver Gender :</b> {{$driver->User->UserDetail->gender}}</label>
+                         
                             </div>    
                     </div>
                     <div class="row form-group">
                         <div class="col-md-5 offset-md-1">
-                            <label for=""><b>Driver License Issuance Date :</b>{{$driver->doi}}</label>
-                            {{-- <input type="text" class="form-control form-control-round" name="doi" id="doi"> --}}
+                            <label for=""><b>Driver License Issuance Date :</b>{{$driver->licenseIssuanceDate}}</label>
                         </div>
                         <div class="col-md-5 offset-md-1">
-                                <label for=""><b>Driver License Expiry Date :</b>{{$driver->doe}}</label>
-                                {{-- <input type="text" class="form-control form-control-round" name="doe" id="doe"> --}}
+                                <label for=""><b>Driver License Expiry Date :</b>{{$driver->licenseExpiryDate}}</label>
                         </div>
                         
                     </div>
                     <div class="row form-group">
                         <div class="col-md-5 offset-md-1">
-                            <label for=""><b>Driver Number :</b>{{$driver->number}}</label>
-                            {{-- <input type="text" class="form-control form-control-round" name="d_number" id="number"> --}}
+                            <label for=""><b>Driver Number :</b>{{$driver->User->UserDetail->phone_no}}</label>
                        </div>
                        <div class="col-md-5 offset-md-1">
                             <label for=""><b>Driver Documents :</b> </label>
                             @foreach ($driver->VmisDocument as $item)
                             <a href="{{asset('/storage/driver_license_pictures/'.$item->documents)}}" download><b style="color:red;">Download Here</b></a>
                             @endforeach
-                            {{-- <input type="file" name="d_documents" id="d_documents" multiple> --}}
+                            
                         </div>
                     </div>
                 </div></div>
             </div>
        
-            <div class="card-footer"> <div class="col-md-3 offset-md-5"><button class="btn btn-md btn-warning" disabled name="edit" type="submit"> Edit</button></div></div>
+            <div class="card-footer"> <div class="col-md-3 offset-md-5"><button class="btn btn-md btn-warning"  name="edit" type="submit"> Edit</button></div></div>
         </form>
         </div>
     </div>

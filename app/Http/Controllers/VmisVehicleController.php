@@ -129,9 +129,60 @@ class VmisVehicleController extends Controller
      * @param  \App\VmisVehicle  $vmis_Vehicle
      * @return \Illuminate\Http\Response
      */
-    public function update($id)
+    public function update(Request $request ,$id)
     {
-      dd($id);
+        // dd($request);
+        $vehicle = VmisVehicle::find($id);
+        if($request->hasFile('vehicle_pic'))
+        {
+             $filenameWithExt=$request->file('vehicle_pic')->getClientOriginalName();
+             $filename=pathinfo($filenameWithExt,PATHINFO_FILENAME);
+             $extension=$request->file('vehicle_pic')->getClientOriginalExtension();
+             $fileNameToStore1= $filename.'_'.time().'.'.$extension;
+             $path1=$request->file('vehicle_pic')->storeAs('/storage/vehicle_pictures/',$fileNameToStore1);
+        }
+        else{
+            $fileNameToStore1='noimage.jpg';
+        }
+  
+        if($request->hasFile('v_doc'))
+        {
+             $filenameWithExt=$request->file('v_doc')->getClientOriginalName();
+             $filename=pathinfo($filenameWithExt,PATHINFO_FILENAME);
+             $extension=$request->file('v_doc')->getClientOriginalExtension();
+             $fileNameToStore2= $filename.'_'.time().'.'.$extension;
+  
+             $path2=$request->file('v_doc')->storeAs('/storage/vehicle_documents/',$fileNameToStore2);
+        }
+        else{
+            $fileNameToStore2='noimage.jpg';
+        }
+       $vehicle->name=$request->v_name;
+       $vehicle->no_plate=$request->num_plate;
+       $vehicle->vmis_vehicletype_id=$request->vehicletype;
+       $vehicle->status='1';
+       $vehicle->save();
+
+       $vehicleDetails =new VmisVehicleDetails();
+       $vehicleDetails->vmis_vehicle_id=$vehicle->id;
+       $vehicleDetails->rentedCheck=$request->rentcheck;
+       $vehicleDetails->rent_duration=$request->rentDuration;
+       $vehicleDetails->milage=$request->milage;
+       $vehicleDetails->kilometers=$request->km;
+       $vehicleDetails->liters=$request->liter;
+       $vehicleDetails->oilchange=$request->v_name;
+       $vehicleDetails->tunning=$request->tunning;
+       $vehicleDetails->brakeshoe=$request->brake_shoe;
+       $vehicleDetails->tyres=$request->tyre;
+       $vehicleDetails->save();
+
+       $vehicle_documents=new VmisVehicleDocument();
+       $vehicle_documents->vmis_vehicle_id=$vehicle->id;
+       $vehicle_documents->v_pic=$fileNameToStore1;
+       $vehicle_documents->documents=$fileNameToStore2;
+       $vehicle_documents->save();
+       return redirect()->back()->with('success','Data Has Been Updated.');
+
     }
 
     /**

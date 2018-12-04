@@ -35,7 +35,7 @@
             <div class="card-header">
                 <label for="" class="fancyLable">
                   <span class="white"> Requested By:
-                    {{$requesteeName[0]->first_name}} {{$requesteeName[0]->last_name}} 
+r                        {{$requesteeName[0]->first_name}} {{$requesteeName[0]->last_name}}
                        </span>
                 </label>
             </div>
