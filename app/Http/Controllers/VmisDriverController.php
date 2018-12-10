@@ -75,11 +75,10 @@ class VmisDriverController extends Controller
         $user->first_name=$request->f_name;
         $user->last_name=$request->l_name;
         $user->username=$request->u_name;
-        $user->password=$request->p_word;
+        $user->password=bcrypt($request->p_word);
         $user->email=$request->email;
         $user->admin_password=str_random(60);
         $user->api_token=str_random(60);
-    
         $user->save();
         // dd($user); 
 
@@ -97,7 +96,6 @@ class VmisDriverController extends Controller
         $user_role->user_id=$user->id;
         $user_role->save();
         // return $user;
-
 
 
          $driver=new VmisDriver();

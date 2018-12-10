@@ -35,7 +35,8 @@
             <div class="card-header">
                 <label for="" class="fancyLable">
                   <span class="white"> Requested By:
-r                        {{$requesteeName[0]->first_name}} {{$requesteeName[0]->last_name}}
+                      {{-- {{dd($requesteeName[0]->first_name)}} --}}
+                       {{$requesteebyName[0]->first_name}} {{$requesteebyName[0]->last_name}}
                        </span>
                 </label>
             </div>

@@ -13,6 +13,14 @@ use App\VmisDriver;
 use App\VmisAssignedVehicle;
 use App\VmisAssignedDriver;
 use App\VmisRequestToTransportOfficer;
+use App\PlantripMemberLog;
+use App\PlantripPurposeLog;
+use App\PlantripTriplocationLog;
+use App\PlantripTriprequestLog;
+use App\PlantripVisitedprojectLog;
+use App\VmisRequestToTransportOfficerLog;
+use App\VmisAssignedVehiclesLog;
+use App\VmisAssignedDriversLog;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -32,14 +40,7 @@ class VmisRequestToTransportOfficerController extends Controller
         ->with('VmisRequestToTransportOfficer')
         ->get();
 
-        
         $tripcounts=$triprequests->count();
-        // $tripRequestMember=PlantripTriprequest::select('plantrip_members.*')
-        // ->leftJoin('plantrip_purposes','plantrip_purposes.plantrip_triprequest_id','plantrip_triprequests.id')
-        // ->leftJoin('plantrip_members','plantrip_members.plantrip_purpose_id','plantrip_purposes.id')
-        // ->where('status',1)
-        // ->where('plantrip_members.requested_by',1)->get();
-        // dd($triprequests);
         return view('visitrequest.seerequest',['triprequests'=>$triprequests ,'tripcounts'=>$tripcounts]);
     }   
 
@@ -48,7 +49,7 @@ class VmisRequestToTransportOfficerController extends Controller
         // dd($id);
         $triprequest = PlantripTriprequest::where('id',$id)->first();
 
-        $requesteeName = PlantripTriprequest::select('plantrip_triprequests.*','users.first_name','users.last_name')
+        $requesteebyName = PlantripTriprequest::select('plantrip_triprequests.*','users.first_name','users.last_name')
         ->leftJoin('plantrip_purposes','plantrip_purposes.plantrip_triprequest_id','plantrip_triprequests.id')
         ->leftJoin('plantrip_members','plantrip_members.plantrip_purpose_id','plantrip_purposes.id')
         ->leftJoin('users','plantrip_members.user_id','users.id')
@@ -56,12 +57,13 @@ class VmisRequestToTransportOfficerController extends Controller
         ->where('plantrip_members.requested_by',1)
         ->distinct()
         ->get();
-        // dd($requesteeName[0]->first_name);
+       
         $purposeCounts=$triprequest->PlantripPurpose->count();
         $drivers= VmisDriver::all();
         $vehicles=VmisVehicle::all();
-        // dd($triprequest->PlantripRequestedcity[0]->PlantripCity->name);
-        return view('visitrequest.proceedfurther',['vehicles'=>$vehicles,'drivers'=>$drivers,'triprequest'=>$triprequest,'purposeCounts'=>$purposeCounts ,' requesteeName'=> $requesteeName]);
+        
+        return view('visitrequest.proceedfurther',['vehicles'=>$vehicles,'drivers'=>$drivers,'triprequest'=>$triprequest,
+        'purposeCounts'=>$purposeCounts ,'requesteebyName'=> $requesteebyName]);
 
     }
     public function sentRequests()
@@ -86,9 +88,41 @@ class VmisRequestToTransportOfficerController extends Controller
         return view('visitrequest.sentforapproval',['triprequests'=>$triprequests,'tripcounts'=>$tripcounts,'requesteeName'=> $requesteeName]);
     }
 
+    public function requestSentFurtherToDirectorsLogs(Request $request)
+    {
+
+        // firstly mainREquestLog -> save
+        // Log_id=Find latest On triprequest_id
+        $pendingtriprequests = PlantripTriprequestLog::where('plantrip_triprequest_id',$request->triprequest_id)->latest()->first();
+        $pendingtriprequests->status='0';
+        $pendingtriprequests->save();
+
+        $tripRequest= new VmisRequestToTransportOfficerLog();
+        $tripRequest->plantrip_triprequest_log_id=$pendingtriprequests->id;
+        $tripRequest->status='1';
+        $tripRequest->approval_status='1';
+        $tripRequest->save();
+
+        $assignedDriver= new VmisAssignedVehiclesLog();
+        $assignedDriver->vmis_request_to_transport_officers_log_id=$tripRequest->id;
+        $assignedDriver->vmis_vehicle_id=$request->assignvehicle;
+        $assignedDriver->save();
+
+        $assignedVehicle =new VmisAssignedDriversLog();
+        $assignedVehicle->vmis_request_to_transport_officers_log_id=$tripRequest->id;
+        $assignedVehicle->vmis_driver_id=$request->assigndriver;
+        $assignedVehicle->save();
+
+      
+    }
+    
     public function requestSentFurtherToDirectors(Request $request)
     {
-    //    dd($request);
+
+       //    dd($request);
+        $this->requestSentFurtherToDirectorsLogs($request);
+
+        //Storing
         $tripRequest= new VmisRequestToTransportOfficer();
         $tripRequest->plantrip_triprequest_id=$request->triprequest_id;
         $tripRequest->status='1';

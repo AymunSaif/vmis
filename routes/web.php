@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('vmisdashboard');
 });
 Route::resource('vehicle','VmisVehicleController');
 Route::resource('driver','VmisDriverController');

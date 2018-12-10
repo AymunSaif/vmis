@@ -22,6 +22,13 @@
                                     <img src="{{asset('/storage/driver_pictures/'.$driver->picture)}}" height="30px" width="30px"/>
                                 </label>
                             </div>
+                            <div class="col-md-5 offset-md-1">
+                                @if(isset($driver->rating))
+                                <span class="rating " name="driverRating" value="{{$driver->rating}}" disabled></span>
+                                @else
+                                <span class="rating " name="driverRating" value="0" disabled></span>                                                                            
+                                @endif
+                            </div>
                     </div>
                     <div class="row form-group ">
                         <div class="col-md-5 offset-md-1">
@@ -85,6 +92,69 @@
 {{-- <script src="{{asset('_monitoring/css/pages/advance-elements/bootstrap-datetimepicker.min.js')}}"></script> --}}
 <script src="{{asset('_monitoring/js/bootstrap-daterangepicker/js/daterangepicker.js')}}"></script>
 {{-- <script src="{{asset('_monitoring/css/pages/advance-elements/custom-picker.js')}}"></script> --}}
+<script src="{{asset('js/rating/jQuery-gRating.js')}}"></script>
+<script src="{{asset('js/rating/jQuery-gRating.min.js')}}"></script>
+<script>
+    $(".rating").grating({
+
+    // Initial enabled or disabled state of the rating
+    enabled: true,
+
+    // Indicates whether to allow select the same rating value twice to toggle off the rating
+    allowDeselect: true,
+
+    // Default character to use i.e. ASCII Star, can be font-awesome fa codes i.e. fa-ambulance
+    character: "&#9733;",
+
+    // Allows switching the span type to another html element if needed
+    elementType: "span",
+
+    // How many rating objects to display
+    elementCount: 5,
+
+    // Whether to limit the number of clicks or not, a value of 0 enables no limit
+    clicklimit: 0,
+
+    // Initial rating value
+    defaultValue: 0,
+
+    // Whether validation is needed
+    required: false,
+
+    // <a href="https://www.jqueryscript.net/tags.php?/Validation/">Validation</a> pattern for the <a href="https://www.jqueryscript.net/tags.php?/Bootstrap/">Bootstrap</a> Validator is added to the class of input if required is true
+    validationClass: "form-control",
+
+    // Overrude the default error message from the Bootstrap Validator
+    validationText: "Rating is required",
+
+    // Placeholder for callback function called onclick events for when a rating is changed
+    callback: null,
+
+    // Normal display settings for stars
+    ratingCss: {
+    fontSize: "20px",
+    color: "black",// For dark pages
+    opacity: ".5",
+    cursor: "pointer",
+    padding: "1px",
+    transition: "all 150ms",
+    display: "inline-block",
+    transform: "rotateX(45deg)",
+    transformOrigin: "center bottom",
+    textShadow: "none"
+    },
+
+    // Hover settings for stars
+    ratingHoverCss: {
+    color: "#ff0",
+    opacity: "1",
+    transform: "rotateX(0deg)",
+    textShadow: "0 0 30px #ffc"
+    }
+
+    });
+
+</script>
 <script type="text/javascript">
     $('#cnic').keydown(function () {
      //allow  backspace, tab, ctrl+A, escape, carriage return

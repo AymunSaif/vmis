@@ -22,4 +22,11 @@ class PlantripTriprequest extends Model
     public function PlantripRequestedcity(){
         return $this->hasMany('App\PlantripRequestedcity');
     }
+    public function PlantripRemark(){
+        return $this->hasMany('App\PlantripRemark');
+    }
+    public function PlantripTriprequest()
+    {
+       return $this->belongsTo('App\PlantripTriprequest');
+    } 
 }
