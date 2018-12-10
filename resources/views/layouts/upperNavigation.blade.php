@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
- 
+
   <title>DGME</title>
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <!-- Tell the browser to be responsive to screen width -->
@@ -71,20 +71,20 @@
             <div class="pcoded-container navbar-wrapper">
                 <nav class="navbar header-navbar pcoded-header nodisprint">
                     <div class="navbar-wrapper">
-    
+
                         <div class="navbar-logo">
                             <a class="mobile-menu" id="mobile-collapse" href="#!">
                                 <i class="feather icon-menu"></i>
                             </a>
                         <a href="{{url('/predashboard')}}">
                                 {{-- <img class="img-fluid" src={{asset('_monitoring/css/images/logo.png')}} alt="Theme-Logo" /> --}}
-                           <span style="font-size:20px; text-align:center;"><b>DG ( M & E)</b></span> 
+                           <span style="font-size:20px; text-align:center;"><b>DG ( M & E)</b></span>
                             </a>
                             <a onclick="javascript:toggleFullScreen()" style=" margin-left: 43px;">
                                 <i class="feather icon-maximize full-screen"></i>
                             </a>
                         </div>
-    
+
                         <div class="navbar-container container-fluid">
                             <ul class="nav-left">
                                 <li class="header-search">
@@ -159,12 +159,12 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="auth-lock-screen.html">
-                                        <i class="feather icon-lock"></i> Lock Screen
+                                    <a href="{{route('home')}}">
+                                        <i class="feather icon-lock"></i> Home
                                     </a>
                                 </li>
                                 <li>
-                                   
+
                                 </li>
                             </ul>
 
@@ -175,11 +175,11 @@
                 </nav>
                 @include('inc.fixedmenu')
 
-        </div>      
+        </div>
     </div>
 
-  
-    
+
+
 </body>
 {{-- required --}}
 <script data-cfasync="false" src="{{asset('_monitoring/js/email-decode.min.js')}}"></script>
@@ -209,7 +209,7 @@
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-      
+
         gtag('config', 'UA-23581568-13');
       </script>
 </html>
