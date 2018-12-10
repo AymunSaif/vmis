@@ -14,6 +14,15 @@
 Route::get('/', function () {
     return view('vmisdashboard');
 });
+
+Route::get('/home',function(){
+  return Redirect::to('http://mis.dgme.gov.pk:8080/');
+})->name('home');
+
+Route::get('/login',function(){
+  return Redirect::to('http://mis.dgme.gov.pk:8080/login');
+});
+
 Route::resource('vehicle','VmisVehicleController');
 Route::resource('driver','VmisDriverController');
 Route::resource('VmisRequestToTransportOfficer','VmisRequestToTransportOfficerController');
