@@ -22,6 +22,7 @@ use App\VmisRequestToTransportOfficerLog;
 use App\VmisAssignedVehiclesLog;
 use App\VmisAssignedDriversLog;
 use Carbon\Carbon;
+use Auth;
 use Illuminate\Http\Request;
 
 class VmisRequestToTransportOfficerController extends Controller
@@ -91,28 +92,35 @@ class VmisRequestToTransportOfficerController extends Controller
     public function requestSentFurtherToDirectorsLogs(Request $request)
     {
 
-        // firstly mainREquestLog -> save
-        // Log_id=Find latest On triprequest_id
+        
         $pendingtriprequests = PlantripTriprequestLog::where('plantrip_triprequest_id',$request->triprequest_id)->latest()->first();
         $pendingtriprequests->status='0';
         $pendingtriprequests->save();
 
         $tripRequest= new VmisRequestToTransportOfficerLog();
         $tripRequest->plantrip_triprequest_log_id=$pendingtriprequests->id;
+        $tripRequest->plantrip_triprequest_id=$request->triprequest_id;
+        $tripRequest->transportOfficer_user_id=Auth::id();
         $tripRequest->status='1';
         $tripRequest->approval_status='1';
         $tripRequest->save();
 
-        $assignedDriver= new VmisAssignedVehiclesLog();
+    //    dd($request->assignvehicle);
+        foreach($request->assignvehicle as $assignvehicle) 
+       {
+        $assignedDriver= new VmisAssignedVehiclesLog(); 
         $assignedDriver->vmis_request_to_transport_officers_log_id=$tripRequest->id;
-        $assignedDriver->vmis_vehicle_id=$request->assignvehicle;
+        $assignedDriver->vmis_vehicle_id=$assignvehicle;
         $assignedDriver->save();
 
+       }
+        foreach($request->assigndriver as $assigndriver)
+       {
         $assignedVehicle =new VmisAssignedDriversLog();
         $assignedVehicle->vmis_request_to_transport_officers_log_id=$tripRequest->id;
-        $assignedVehicle->vmis_driver_id=$request->assigndriver;
+        $assignedVehicle->vmis_driver_id=$assigndriver;
         $assignedVehicle->save();
-
+    }
       
     }
     
@@ -126,19 +134,24 @@ class VmisRequestToTransportOfficerController extends Controller
         $tripRequest= new VmisRequestToTransportOfficer();
         $tripRequest->plantrip_triprequest_id=$request->triprequest_id;
         $tripRequest->status='1';
+        $tripRequest->transportOfficer_user_id=Auth::id();
         $tripRequest->approval_status='1';
         $tripRequest->save();
 
-        $assignedDriver= new VmisAssignedVehicle();
+        foreach($request->assignvehicle as $assignvehicle) 
+       {
+        $assignedDriver= new VmisAssignedVehicle; 
         $assignedDriver->vmis_request_to_transport_officer_id=$tripRequest->id;
-        $assignedDriver->vmis_vehicle_id=$request->assignvehicle;
+        $assignedDriver->vmis_vehicle_id=$assignvehicle;
         $assignedDriver->save();
-
+       }
+        foreach($request->assigndriver as $assigndriver)
+       {
         $assignedVehicle =new VmisAssignedDriver();
         $assignedVehicle->vmis_request_to_transport_officer_id=$tripRequest->id;
-        $assignedVehicle->vmis_driver_id=$request->assigndriver;
+        $assignedVehicle->vmis_driver_id=$assigndriver;
         $assignedVehicle->save();
-
+    }
         $pendingtriprequests = PlantripTriprequest::find($request->triprequest_id);
         $pendingtriprequests->status='0';
         $pendingtriprequests->save();

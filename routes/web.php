@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Auth::routes();
 Route::get('/', function () {
     return view('vmisdashboard');
 });
@@ -21,3 +21,7 @@ Route::get('/pendingrequest','VmisRequestToTransportOfficerController@pendingReq
 Route::get('/proceedfurther/{id}','VmisRequestToTransportOfficerController@proceedFurther')->name('proceedfurther');
 Route::get('/requestsent','VmisRequestToTransportOfficerController@sentRequests')->name('sentRequests');
 Route::post('/reqsentfurther','VmisRequestToTransportOfficerController@requestSentFurtherToDirectors')->name('requestsentfurthertoauthority');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

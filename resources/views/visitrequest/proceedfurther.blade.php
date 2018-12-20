@@ -239,7 +239,7 @@
                 <div class="row">
                     <div class="col-md-6 form-group ">
                         <label for=""><b>Assign Driver :</b></label><br>
-                        <select required name="assigndriver" class="multipleselect form-control" multiple="multiple" data-placeholder="Select Driver"  id="">
+                        <select required name="assigndriver[]" class="multipleselect form-control" multiple="multiple" data-placeholder="Select Driver"  id="">
                             @foreach ($drivers as $driver)
                             <option value="{{$driver->id}}">{{$driver->User->first_name}} {{$driver->User->last_name}}</option>
                             @endforeach
@@ -247,7 +247,7 @@
                     </div>
                     <div class="col-md-6 form-group ">
                         <label for=""><b>Assign Vehicle : </b></label><br>
-                        <select name="assignvehicle" required class=" multipleselect form-control" data-placeholder="Select Vehicle"  multiple="multiple" id="">
+                        <select name="assignvehicle[]" required class=" multipleselect form-control" data-placeholder="Select Vehicle"  multiple="multiple" id="">
                             @foreach ($vehicles as $vehicle)
                             <option value="{{$vehicle->id}}">{{$vehicle->name}}-{{$vehicle->no_plate}}</option>
                             @endforeach

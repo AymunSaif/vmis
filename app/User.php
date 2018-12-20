@@ -31,8 +31,19 @@ class User extends Authenticatable
         return $this->hasOne('App\VmisDriver');
     }
     public function VmisRequestToTransportOfficer(){
-        return $this->hasMany('App\VmisRequestToTransportOfficer','approvedby_user_id');
+        return $this->hasOne('App\VmisRequestToTransportOfficer','approvedby_user_id');
     }
+    public function TransportOfficerUser(){
+        return $this->hasOne('App\VmisRequestToTransportOfficer','transportOfficer_user_id');
+    }
+
+    public function RecommendedByUser(){
+        return $this->hasOne('App\VmisRequestToTransportOfficer','recommendedby_user_id');
+    }
+    public function RemrksByUser(){
+        return $this->hasMany('App\PlantripRemark','remarksby_user_id');
+      }
+
     public function PlantripMember(){
         return $this->hasMany('App\PlantripMember');
     }
